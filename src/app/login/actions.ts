@@ -22,7 +22,7 @@ export async function login(formData: FormData) {
   redirect('/dashboard')
 }
 
-export async function signup(formData: FormData) {
+export async function signup(prevState: any, formData: FormData) {
   const supabase = await createClient()
 
   const data = {
@@ -32,6 +32,7 @@ export async function signup(formData: FormData) {
       data: {
         full_name: formData.get('full_name') as string,
         roll_number: formData.get('roll_number') as string,
+        department: formData.get('department') as string,
       }
     }
   }
@@ -39,9 +40,10 @@ export async function signup(formData: FormData) {
   const { error } = await supabase.auth.signUp(data)
 
   if (error) {
-    redirect('/signup?error=Could not create user')
+    console.error("Supabase SignUp Error:", error)
+    return { error: error.message, message: null }
   }
 
   revalidatePath('/', 'layout')
-  redirect('/login?message=Check your email to continue sign in process')
+  return { error: null, message: 'Check your email to continue sign in process' }
 }

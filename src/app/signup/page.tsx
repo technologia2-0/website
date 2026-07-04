@@ -1,13 +1,17 @@
+'use client'
+
 import { signup } from '@/app/login/actions'
 import Link from 'next/link'
 import { ArrowRight, Lock, Mail, User, Hash } from 'lucide-react'
+import { useActionState } from 'react'
 
-export default async function SignupPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ error?: string; message?: string }>
-}) {
-  const { error, message } = await searchParams
+const initialState = {
+  error: null as string | null,
+  message: null as string | null,
+}
+
+export default function SignupPage() {
+  const [state, formAction, isPending] = useActionState(signup, initialState)
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -25,7 +29,7 @@ export default async function SignupPage({
             <p className="text-white/60">Register for Technologia platform</p>
           </div>
 
-          <form className="space-y-5">
+          <form action={formAction} className="space-y-5">
             <div className="space-y-2">
               <label className="text-sm font-medium text-white/80" htmlFor="full_name">Full Name</label>
               <div className="relative">
@@ -57,6 +61,28 @@ export default async function SignupPage({
                   className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
                   placeholder="23IT001"
                 />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-white/80" htmlFor="department">Department</label>
+              <div className="relative">
+                <select
+                  id="department"
+                  name="department"
+                  required
+                  defaultValue=""
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none pl-10"
+                >
+                  <option value="" disabled className="bg-black text-white/50">Select your department</option>
+                  <option value="it" className="bg-black text-white">Information Technology (IT)</option>
+                  <option value="cs" className="bg-black text-white">Computer Science (CS)</option>
+                  <option value="ds" className="bg-black text-white">Data Science (DS)</option>
+                  <option value="other" className="bg-black text-white">Other</option>
+                </select>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <svg className="w-4 h-4 text-white/40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
               </div>
             </div>
 
@@ -94,14 +120,14 @@ export default async function SignupPage({
               </div>
             </div>
 
-            {error && <div className="text-red-400 text-sm font-medium text-center bg-red-400/10 py-2 rounded-lg">{error}</div>}
-            {message && <div className="text-primary text-sm font-medium text-center bg-primary/10 py-2 rounded-lg">{message}</div>}
+            {state?.error && <div className="text-red-400 text-sm font-medium text-center bg-red-400/10 py-2 rounded-lg">{state.error}</div>}
+            {state?.message && <div className="text-primary text-sm font-medium text-center bg-primary/10 py-2 rounded-lg">{state.message}</div>}
 
             <button
-              formAction={signup}
-              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-xl font-semibold transition-all shadow-[0_0_20px_rgba(59,130,246,0.2)] mt-2"
+              disabled={isPending}
+              className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-xl font-semibold transition-all shadow-[0_0_20px_rgba(59,130,246,0.2)] mt-2 disabled:opacity-50"
             >
-              Sign Up <ArrowRight className="w-4 h-4" />
+              {isPending ? 'Creating account...' : 'Sign Up'} <ArrowRight className="w-4 h-4" />
             </button>
           </form>
 
