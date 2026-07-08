@@ -1,8 +1,39 @@
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { updateSession } from '@/utils/supabase/middleware'
+import { createServerClient } from '@supabase/ssr'
 
 export async function proxy(request: NextRequest) {
-  return await updateSession(request)
+  const response = await updateSession(request)
+
+  const supabase = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll() {},
+      },
+    }
+  )
+
+  const { data: { user } } = await supabase.auth.getUser()
+  const { pathname } = request.nextUrl
+
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/organizer')) {
+    if (!user) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+  }
+
+  if (pathname.startsWith('/login') || pathname.startsWith('/signup')) {
+    if (user) {
+      return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+  }
+
+  return response
 }
 
 export const config = {

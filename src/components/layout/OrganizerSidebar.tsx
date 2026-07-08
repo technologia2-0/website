@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { LayoutDashboard, Users, CalendarDays, CheckSquare, Megaphone, Award, BarChart3, FileText, ShieldAlert, LogOut, Lock, Trophy } from "lucide-react"
+import { LayoutDashboard, Users, CalendarDays, CheckSquare, Megaphone, Award, BarChart3, FileText, ShieldAlert, LogOut, Lock, Trophy, Layers, Settings } from "lucide-react"
 
 export function OrganizerSidebar() {
   return (
@@ -23,14 +23,9 @@ export function OrganizerSidebar() {
           <span className="font-medium text-sm">Events</span>
         </Link>
         
-        <Link href="/organizer/registrations" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
-          <CheckSquare className="w-5 h-5" />
-          <span className="font-medium text-sm">Registrations</span>
-        </Link>
-        
-        <Link href="/organizer/attendance" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+        <Link href="/organizer/users" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
           <Users className="w-5 h-5" />
-          <span className="font-medium text-sm">Attendance</span>
+          <span className="font-medium text-sm">Users & Teams</span>
         </Link>
 
         <div className="mt-6 mb-4 px-4 text-xs font-semibold text-white/40 uppercase tracking-wider pt-4 border-t border-white/5">Operations</div>
@@ -49,6 +44,11 @@ export function OrganizerSidebar() {
           <Lock className="w-3 h-3" /> Admin Only
         </div>
 
+        <Link href="/organizer/editions" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+          <Layers className="w-5 h-5" />
+          <span className="font-medium text-sm">Fest Editions</span>
+        </Link>
+
         <Link href="/organizer/analytics" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
           <BarChart3 className="w-5 h-5" />
           <span className="font-medium text-sm">Analytics</span>
@@ -62,6 +62,11 @@ export function OrganizerSidebar() {
         <Link href="/organizer/audit" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
           <ShieldAlert className="w-5 h-5" />
           <span className="font-medium text-sm">Audit Logs</span>
+        </Link>
+
+        <Link href="/organizer/settings" className="flex items-center gap-3 px-4 py-2.5 text-white/60 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+          <Settings className="w-5 h-5" />
+          <span className="font-medium text-sm">Global Settings</span>
         </Link>
       </div>
 

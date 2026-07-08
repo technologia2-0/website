@@ -1,12 +1,31 @@
 import { OrganizerSidebar } from "@/components/layout/OrganizerSidebar"
 import { DashboardNavbar } from "@/components/layout/DashboardNavbar"
 import { Trophy } from "lucide-react"
+import { createClient } from "@/utils/supabase/server"
+import { redirect } from "next/navigation"
 
-export default function OrganizerLayout({
+export default async function OrganizerLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect("/login")
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .single()
+
+  if (!profile || profile.role === "student") {
+    redirect("/dashboard")
+  }
+
   return (
     <div className="flex h-screen bg-[#050505] overflow-hidden">
       <OrganizerSidebar />

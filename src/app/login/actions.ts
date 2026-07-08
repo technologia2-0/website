@@ -22,7 +22,7 @@ export async function login(formData: FormData) {
   redirect('/dashboard')
 }
 
-export async function signup(prevState: any, formData: FormData) {
+export async function signup(prevState: unknown, formData: FormData) {
   const supabase = await createClient()
 
   const data = {
@@ -46,4 +46,10 @@ export async function signup(prevState: any, formData: FormData) {
 
   revalidatePath('/', 'layout')
   return { error: null, message: 'Check your email to continue sign in process' }
+}
+
+export async function logout() {
+  const supabase = await createClient()
+  await supabase.auth.signOut()
+  redirect('/login')
 }
