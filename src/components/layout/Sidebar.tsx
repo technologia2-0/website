@@ -1,21 +1,15 @@
 'use client'
 
 import Link from "next/link"
-import { Home, Calendar, Trophy, QrCode, Award, Bell, Settings, LogOut, Search, Compass, MapPin, Gamepad2, FileText, Activity } from "lucide-react"
+import { Home, Calendar, Trophy, QrCode, Award, Bell, Settings, LogOut, Search, MapPin, User, Clock, CheckSquare } from "lucide-react"
 import { logout } from "@/app/login/actions"
 import { usePathname } from "next/navigation"
 import clsx from "clsx"
 
 const navItems = [
-  { href: "/dashboard", label: "Overview", icon: Home },
-  { href: "/dashboard/events", label: "My Events", icon: Calendar },
-  { href: "/dashboard/qr", label: "QR Pass", icon: QrCode },
-  { href: "/dashboard/team", label: "My Team", icon: Compass },
-  { href: "/dashboard/results", label: "Results", icon: FileText },
-  { href: "/dashboard/certificates", label: "Certificates", icon: Award },
-  { href: "/dashboard/leaderboard", label: "Leaderboard", icon: Trophy },
-  { href: "/dashboard/hunt", label: "Treasure Hunt", icon: Gamepad2 },
-  { href: "/dashboard/analytics", label: "Analytics", icon: Activity },
+  { href: "/dashboard", label: "Dashboard", icon: Home },
+  { href: "/dashboard/events", label: "Events", icon: Calendar },
+  { href: "/dashboard/profile", label: "Profile", icon: User },
 ]
 
 export function Sidebar() {
@@ -74,16 +68,6 @@ export function Sidebar() {
           <Bell className="w-5 h-5 group-hover:rotate-12 transition-transform" />
           <span className="font-medium text-sm tracking-wide">Notifications</span>
         </Link>
-        <Link href="/dashboard/settings" className="flex items-center gap-3 px-4 py-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
-          <Settings className="w-5 h-5 group-hover:rotate-90 transition-transform duration-500" />
-          <span className="font-medium text-sm tracking-wide">Settings</span>
-        </Link>
-        <form action={logout}>
-          <button type="submit" className="w-full flex items-center gap-3 px-4 py-2.5 text-red-400/70 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-all group mt-1">
-            <LogOut className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium text-sm tracking-wide">Disconnect</span>
-          </button>
-        </form>
       </div>
     </div>
   )

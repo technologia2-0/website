@@ -34,7 +34,7 @@ export default function ArchiveEditionPage({ params }: { params: { year: string 
 
       {/* Wrapping the page in an opacity filter to signify it's archived visually */}
       <div className="opacity-80 grayscale-[20%] pointer-events-none">
-        <HeroSection />
+        <HeroSection year={parseInt(archivedEdition.year)} />
         <AboutSection />
         <EventsSection />
       </div>

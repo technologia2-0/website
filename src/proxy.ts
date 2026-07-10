@@ -21,15 +21,27 @@ export async function proxy(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   const { pathname } = request.nextUrl
 
-  if (pathname.startsWith('/dashboard') || pathname.startsWith('/organizer')) {
+  if (pathname.startsWith('/dashboard')) {
     if (!user) {
       return NextResponse.redirect(new URL('/login', request.url))
+    }
+  }
+
+  if (pathname.startsWith('/organizer') && pathname !== '/organizer/login') {
+    if (!user) {
+      return NextResponse.redirect(new URL('/organizer/login', request.url))
     }
   }
 
   if (pathname.startsWith('/login') || pathname.startsWith('/signup')) {
     if (user) {
       return NextResponse.redirect(new URL('/dashboard', request.url))
+    }
+  }
+
+  if (pathname === '/organizer/login') {
+    if (user) {
+      return NextResponse.redirect(new URL('/organizer', request.url))
     }
   }
 

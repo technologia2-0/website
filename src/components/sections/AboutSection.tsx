@@ -1,78 +1,74 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Monitor, Cpu, Database, Award } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/Card'
+import { motion } from "framer-motion";
 
-export function AboutSection() {
+interface AboutProps {
+  title?: string;
+  description?: string;
+  vision?: string;
+  mission?: string;
+}
+
+export function AboutSection({ title, description, vision, mission }: AboutProps) {
   return (
-    <section id="about" className="py-24 px-4 relative">
-      <div className="absolute top-1/2 left-0 w-72 h-72 bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="py-32 px-6 bg-black relative">
+      <div className="max-w-4xl mx-auto text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">About Technologia</h2>
-          <p className="text-lg text-white/60 max-w-2xl mx-auto">
-            The premier technical fest bringing together the brightest minds from Information Technology, Computer Science, and Data Science.
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight">
+            {title || 'Designed for the relentless.'}
+          </h2>
+          
+          <p className="text-lg md:text-2xl text-gray-400 leading-relaxed font-light mb-12">
+            {description || 'Technologia is more than a technical fest. It is the convergence of brilliant minds, relentless engineering, and sheer creative force.'}
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mt-16">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="p-8 glass-card border border-white/5"
           >
-            <Card className="h-full border-white/10 bg-white/5 backdrop-blur-sm p-8">
-              <h3 className="text-2xl font-bold text-white mb-4">The Ultimate Battle</h3>
-              <p className="text-white/60 leading-relaxed mb-6">
-                For three days, the departments will clash in a series of rigorous technical events. 
-                Only one department will lift the legendary Best Department Trophy. Do you have what it takes?
-              </p>
-              <div className="flex gap-4 items-center">
-                <div className="flex items-center gap-2 text-primary font-medium">
-                  <Monitor className="w-5 h-5" /> IT
-                </div>
-                <div className="flex items-center gap-2 text-primary font-medium">
-                  <Cpu className="w-5 h-5" /> CS
-                </div>
-                <div className="flex items-center gap-2 text-primary font-medium">
-                  <Database className="w-5 h-5" /> DS
-                </div>
-              </div>
-            </Card>
+            <h3 className="text-xl font-bold text-white mb-3">The Vision</h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              {vision || 'To cultivate an ecosystem where innovation is standard, and boundaries are merely milestones.'}
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="p-8 glass-card border border-white/5"
+          >
+            <h3 className="text-xl font-bold text-white mb-3">The Mission</h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              {mission || 'Provide a world-class competitive platform for students to test their skills.'}
+            </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            className="p-8 glass-card border border-white/5"
           >
-            {[
-              { icon: <Award className="w-6 h-6" />, title: "Digital First", desc: "100% automated systems" },
-              { icon: <Monitor className="w-6 h-6" />, title: "30+ Events", desc: "Coding, Quizzes & More" },
-              { icon: <Database className="w-6 h-6" />, title: "Data Driven", desc: "Live PR Points" },
-              { icon: <Cpu className="w-6 h-6" />, title: "Next Gen", desc: "Futuristic Platform" },
-            ].map((feature, i) => (
-              <Card key={i} className="bg-white/5 border-white/10 p-6 flex flex-col justify-center items-center text-center">
-                <div className="w-12 h-12 rounded-full bg-primary/20 text-primary flex items-center justify-center mb-4">
-                  {feature.icon}
-                </div>
-                <h4 className="font-bold text-white mb-1">{feature.title}</h4>
-                <p className="text-sm text-white/50">{feature.desc}</p>
-              </Card>
-            ))}
+            <h3 className="text-xl font-bold text-white mb-3">The Battle</h3>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Three departments. One legendary trophy. Compete in rigorous events spanning coding, design, hardware, and logic to prove your supremacy.
+            </p>
           </motion.div>
         </div>
       </div>
     </section>
-  )
+  );
 }

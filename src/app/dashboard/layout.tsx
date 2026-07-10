@@ -1,7 +1,5 @@
 import { Sidebar } from "@/components/layout/Sidebar"
 import { DashboardNavbar } from "@/components/layout/DashboardNavbar"
-import { CommandPalette } from "@/components/layout/CommandPalette"
-import { MissionControlAI } from "@/components/dashboard/MissionControlAI"
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 
@@ -19,8 +17,6 @@ export default async function DashboardLayout({
 
   return (
     <div className="flex h-screen bg-black overflow-hidden selection:bg-primary/30">
-      <CommandPalette />
-      <MissionControlAI />
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden relative">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-900/20 via-black to-black pointer-events-none" />

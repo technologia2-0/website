@@ -1,44 +1,75 @@
+import { LandingNavbar } from "@/components/layout/LandingNavbar";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { EventsSection } from "@/components/sections/EventsSection";
-import { ScheduleSection } from "@/components/sections/ScheduleSection";
+import { JourneySection } from "@/components/sections/JourneySection";
+import { DepartmentsSection } from "@/components/sections/DepartmentsSection";
+import { ContactSection } from "@/components/sections/ContactSection";
 import { Footer } from "@/components/sections/Footer";
-import Link from "next/link";
-import { Layers } from "lucide-react";
+import { createClient } from "@/utils/supabase/server";
+import type { Metadata } from 'next';
 
-export default function Home() {
-  // In a real implementation, we would fetch the 'active' edition from Supabase
-  const activeEdition = { name: "Technologia 2026", year: 2026 };
+export const metadata: Metadata = {
+  title: 'Technologia | Official Technical Fest',
+  description: 'The premier technical fest bringing together the brightest minds from Information Technology, Computer Science, and Data Science. Join the revolution.',
+  openGraph: {
+    title: 'Technologia | Official Technical Fest',
+    description: 'The premier technical fest. 100% automated, fully digital, and extremely competitive.',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Technologia | Official Technical Fest',
+    description: 'The premier technical fest. 100% automated, fully digital, and extremely competitive.',
+  }
+};
+
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  const supabase = await createClient();
+
+  // Fetch homepage content
+  const { data: content } = await supabase
+    .from('homepage_content')
+    .select('*')
+    .eq('id', 1)
+    .single();
+
+  const activeYear = new Date().getFullYear();
+  
+  // Default values if table is empty
+  const defaultContent = {
+    hero_title: 'THE FUTURE OF INNOVATION',
+    hero_subtitle: `Technologia ${activeYear} Edition`,
+    hero_description: 'Join the ultimate technical fest. Experience cutting-edge competitions, hands-on workshops, and prove your department\'s supremacy.',
+    countdown_date: new Date(new Date().getTime() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+    about_title: 'About Technologia',
+    about_description: 'Technologia is the premier annual technical festival...',
+    vision_text: 'To foster a culture of technical excellence and innovation among students.',
+    mission_text: 'To provide a platform for students to showcase their skills, learn from experts, and collaborate on real-world problems.'
+  };
+
+  const pageContent = content || defaultContent;
 
   return (
-    <div className="flex flex-col min-h-screen scroll-smooth">
-      {/* Navbar */}
-      <nav className="w-full h-20 glass fixed top-0 z-50 flex items-center justify-between px-8">
-        <div className="text-2xl font-bold tracking-tighter text-white flex items-center gap-2">
-          TECH<span className="text-primary">NOLOGIA</span>
-          <span className="text-xs px-2 py-0.5 bg-white/10 text-white/50 rounded-full font-medium ml-2 tracking-normal flex items-center gap-1">
-            <Layers className="w-3 h-3" /> {activeEdition.year}
-          </span>
-        </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-white/70">
-          <Link href="#about" className="hover:text-white transition-colors">About</Link>
-          <Link href="#events" className="hover:text-white transition-colors">Events</Link>
-          <Link href="#schedule" className="hover:text-white transition-colors">Schedule</Link>
-          <Link href="/archive" className="hover:text-white transition-colors">Past Editions</Link>
-          <Link href="/login" className="hover:text-white transition-colors">Portal</Link>
-        </div>
-        <Link href="/signup" className="hidden md:inline-flex bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 rounded-full font-medium transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)]">
-          Register Now
-        </Link>
-      </nav>
-
-      <HeroSection />
-
-      <AboutSection />
-      <EventsSection />
-      <ScheduleSection />
+    <div className="flex flex-col min-h-screen scroll-smooth bg-black text-white font-sans selection:bg-accent-blue selection:text-black">
+      <LandingNavbar year={activeYear} />
+      <HeroSection 
+        title={pageContent.hero_title}
+        subtitle={pageContent.hero_subtitle}
+        description={pageContent.hero_description}
+        startDate={pageContent.countdown_date} 
+      />
+      <AboutSection 
+        title={pageContent.about_title}
+        description={pageContent.about_description}
+        vision={pageContent.vision_text}
+        mission={pageContent.mission_text}
+      />
+      <JourneySection />
+      <DepartmentsSection />
+      <ContactSection />
       <Footer />
     </div>
   );
 }
-

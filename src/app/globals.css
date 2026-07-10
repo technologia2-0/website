@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #050505;
-  --color-foreground: #fafafa;
-  --color-primary: #3b82f6;
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-primary: #0070F3;
   --color-primary-foreground: #ffffff;
   
+  --color-accent-blue: #00E5FF;
+  --color-accent-purple: #7928CA;
+  
+  --color-dark-gray: #111111;
+  --color-dark-gray-light: #222222;
+  --color-gray-text: #888888;
+  
   /* Glassmorphism utilities */
-  --color-glass: rgba(255, 255, 255, 0.05);
-  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --color-glass: rgba(255, 255, 255, 0.03);
+  --color-glass-hover: rgba(255, 255, 255, 0.08);
+  --color-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 :root {
-  --background: #050505;
-  --foreground: #fafafa;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 body {
@@ -26,9 +34,18 @@ body {
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10;
+    @apply bg-glass backdrop-blur-xl border border-glass-border;
   }
   .glass-card {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.3)];
+    @apply bg-glass backdrop-blur-2xl border border-glass-border rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] transition-all duration-300;
+  }
+  .glass-card:hover {
+    @apply bg-glass-hover border-white/20;
+  }
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-500;
+  }
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent-blue to-accent-purple;
   }
 }
