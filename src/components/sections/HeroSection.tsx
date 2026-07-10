@@ -39,7 +39,7 @@ export function HeroSection({ title, subtitle, description, startDate }: HeroPro
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [year]);
+  }, [startDate]);
 
   return (
     <main className="relative flex flex-col items-center justify-center min-h-screen pt-20 px-4 overflow-hidden">
