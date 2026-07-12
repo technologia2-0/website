@@ -16,7 +16,8 @@ export async function createEvent(formData: FormData) {
     .eq('id', user.id)
     .single()
 
-  if (!profile || !['admin', 'super_admin', 'coordinator'].includes(profile.role)) {
+  const adminRoles = ['admin', 'super_admin', 'coordinator', 'volunteer']
+  if (!profile || !adminRoles.includes(profile.role)) {
     throw new Error("Unauthorized role")
   }
 
@@ -56,6 +57,8 @@ export async function createEvent(formData: FormData) {
   }
 
   revalidatePath('/organizer/events')
+  revalidatePath('/student/events')
+  revalidatePath('/student')
 }
 
 export async function updateEvent(eventId: string, formData: FormData) {
@@ -103,6 +106,8 @@ export async function updateEvent(eventId: string, formData: FormData) {
   }
 
   revalidatePath('/organizer/events')
+  revalidatePath('/student/events')
+  revalidatePath('/student')
 }
 
 export async function deleteEvent(eventId: string) {
@@ -115,4 +120,6 @@ export async function deleteEvent(eventId: string) {
   }
 
   revalidatePath('/organizer/events')
+  revalidatePath('/student/events')
+  revalidatePath('/student')
 }

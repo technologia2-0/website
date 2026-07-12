@@ -18,8 +18,25 @@ export async function login(formData: FormData) {
     redirect(`/login?error=${encodeURIComponent(error.message)}`)
   }
 
+  // Get user profile to determine their role
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/login?error=Authentication failed')
+
+  const { data: profile } = await supabase
+    .from('profiles')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
   revalidatePath('/', 'layout')
-  redirect('/dashboard')
+
+  // Route based on role
+  const adminRoles = ['admin', 'super_admin', 'coordinator', 'volunteer']
+  if (profile && adminRoles.includes(profile.role)) {
+    redirect('/organizer')
+  }
+
+  redirect('/student')
 }
 
 export async function signup(prevState: unknown, formData: FormData) {

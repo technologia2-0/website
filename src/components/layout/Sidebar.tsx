@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation"
 import clsx from "clsx"
 
 const navItems = [
-  { href: "/dashboard", label: "Dashboard", icon: Home },
-  { href: "/dashboard/events", label: "Events", icon: Calendar },
-  { href: "/dashboard/profile", label: "Profile", icon: User },
+  { href: "/student", label: "Dashboard", icon: Home },
+  { href: "/student/events", label: "Events", icon: Calendar },
+  { href: "/student/profile", label: "Profile", icon: User },
 ]
 
 export function Sidebar() {
@@ -19,7 +19,7 @@ export function Sidebar() {
     <div className="w-64 h-screen border-r border-white/5 bg-black/40 backdrop-blur-3xl flex-col hidden md:flex sticky top-0 relative z-50 shadow-2xl">
       {/* Brand Logo */}
       <div className="h-20 flex items-center px-8 border-b border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent">
-        <Link href="/dashboard" className="flex items-center gap-2 group">
+        <Link href="/student" className="flex items-center gap-2 group">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.5)] group-hover:shadow-[0_0_25px_rgba(59,130,246,0.6)] transition-all">
             <MapPin className="w-4 h-4 text-white" />
           </div>
@@ -64,7 +64,7 @@ export function Sidebar() {
       </div>
 
       <div className="p-3 border-t border-white/5 bg-gradient-to-t from-black/50 to-transparent space-y-1">
-        <Link href="/dashboard/notifications" className="flex items-center gap-3 px-4 py-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
+        <Link href="/student/notifications" className="flex items-center gap-3 px-4 py-2.5 text-white/50 hover:text-white hover:bg-white/5 rounded-xl transition-all group">
           <Bell className="w-5 h-5 group-hover:rotate-12 transition-transform" />
           <span className="font-medium text-sm tracking-wide">Notifications</span>
         </Link>

@@ -1,5 +1,5 @@
 import { createClient } from "@/utils/supabase/server";
-import { EventCard } from "@/components/dashboard/EventCard";
+import { EventCard } from "@/components/student/EventCard";
 import { Calendar } from "lucide-react";
 
 export default async function EventsPage() {

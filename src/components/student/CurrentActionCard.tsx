@@ -31,7 +31,7 @@ export function CurrentActionCard({ registeredEvents }: CurrentActionCardProps) 
           </div>
           
           <Link 
-            href="/dashboard/qr"
+            href="/student/qr"
             className="shrink-0 inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.2)]"
           >
             Show QR Pass
@@ -60,7 +60,7 @@ export function CurrentActionCard({ registeredEvents }: CurrentActionCardProps) 
         </div>
         
         <Link 
-          href="/dashboard/events"
+          href="/student/events"
           className="shrink-0 inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-full font-semibold text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(255,255,255,0.2)]"
         >
           Browse Events

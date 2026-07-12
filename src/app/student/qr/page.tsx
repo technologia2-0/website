@@ -13,10 +13,10 @@ export default function QRPassPage() {
       </p>
       
       <div className="flex items-center gap-4">
-        <Link href="/dashboard" className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium transition-colors border border-white/10">
+        <Link href="/student" className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium transition-colors border border-white/10">
           Return to Dashboard
         </Link>
-        <Link href="/dashboard/profile" className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+        <Link href="/student/profile" className="px-6 py-2.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold transition-all shadow-[0_0_15px_rgba(37,99,235,0.4)]">
           Update Profile
         </Link>
       </div>

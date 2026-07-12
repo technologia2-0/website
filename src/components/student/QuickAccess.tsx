@@ -3,11 +3,11 @@ import { Calendar, QrCode, Award, FileText, User } from "lucide-react";
 
 export function QuickAccess() {
   const shortcuts = [
-    { href: "/dashboard/events", label: "Browse Events", icon: Calendar, color: "text-emerald-400", bg: "bg-emerald-500/10" },
-    { href: "/dashboard/qr", label: "QR Pass", icon: QrCode, color: "text-blue-400", bg: "bg-blue-500/10" },
-    { href: "/dashboard/certificates", label: "Certificates", icon: Award, color: "text-yellow-400", bg: "bg-yellow-500/10" },
-    { href: "/dashboard/results", label: "Results", icon: FileText, color: "text-green-400", bg: "bg-green-500/10" },
-    { href: "/dashboard/profile", label: "Profile", icon: User, color: "text-purple-400", bg: "bg-purple-500/10" },
+    { href: "/student/events", label: "Browse Events", icon: Calendar, color: "text-emerald-400", bg: "bg-emerald-500/10" },
+    { href: "/student/qr", label: "QR Pass", icon: QrCode, color: "text-blue-400", bg: "bg-blue-500/10" },
+    { href: "/student/certificates", label: "Certificates", icon: Award, color: "text-yellow-400", bg: "bg-yellow-500/10" },
+    { href: "/student/results", label: "Results", icon: FileText, color: "text-green-400", bg: "bg-green-500/10" },
+    { href: "/student/profile", label: "Profile", icon: User, color: "text-purple-400", bg: "bg-purple-500/10" },
   ];
 
   return (

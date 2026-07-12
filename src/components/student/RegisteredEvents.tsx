@@ -18,7 +18,7 @@ export function RegisteredEvents() {
           <span className="w-2 h-6 bg-primary rounded-full inline-block" />
           My Registered Events
         </h2>
-        <Link href="/dashboard/events" className="text-sm font-medium text-white/50 hover:text-white transition-colors flex items-center gap-1">
+        <Link href="/student/events" className="text-sm font-medium text-white/50 hover:text-white transition-colors flex items-center gap-1">
           View All <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
@@ -66,7 +66,7 @@ export function RegisteredEvents() {
               </div>
 
               <Link 
-                href={`/dashboard/events/${event.id}`}
+                href={`/student/events/${event.id}`}
                 className="block w-full text-center py-2.5 rounded-xl bg-white/5 text-sm font-semibold text-white/70 hover:bg-white/10 hover:text-white transition-colors border border-white/5"
               >
                 View Details

@@ -29,8 +29,8 @@ export async function createAnnouncement(formData: FormData) {
   }
 
   revalidatePath('/organizer/announcements')
-  revalidatePath('/dashboard')
-  revalidatePath('/dashboard/notifications')
+  revalidatePath('/student')
+  revalidatePath('/student/notifications')
 }
 
 export async function updateAnnouncement(id: string, formData: FormData) {
@@ -58,8 +58,8 @@ export async function updateAnnouncement(id: string, formData: FormData) {
   if (error) throw new Error('Failed to update announcement')
 
   revalidatePath('/organizer/announcements')
-  revalidatePath('/dashboard')
-  revalidatePath('/dashboard/notifications')
+  revalidatePath('/student')
+  revalidatePath('/student/notifications')
 }
 
 export async function deleteAnnouncement(id: string) {
@@ -76,6 +76,6 @@ export async function deleteAnnouncement(id: string) {
   if (error) throw new Error('Failed to delete announcement')
 
   revalidatePath('/organizer/announcements')
-  revalidatePath('/dashboard')
-  revalidatePath('/dashboard/notifications')
+  revalidatePath('/student')
+  revalidatePath('/student/notifications')
 }

@@ -21,27 +21,33 @@ export async function proxy(request: NextRequest) {
   const { data: { user } } = await supabase.auth.getUser()
   const { pathname } = request.nextUrl
 
-  if (pathname.startsWith('/dashboard')) {
+  // --- Student Portal ---
+  if (pathname.startsWith('/student')) {
     if (!user) {
       return NextResponse.redirect(new URL('/login', request.url))
     }
   }
 
-  if (pathname.startsWith('/organizer') && pathname !== '/organizer/login') {
+  if (pathname.startsWith('/organizer')) {
     if (!user) {
-      return NextResponse.redirect(new URL('/organizer/login', request.url))
+      return NextResponse.redirect(new URL('/login', request.url))
     }
   }
 
+  // --- Login/Signup: If already logged in, route based on role ---
   if (pathname.startsWith('/login') || pathname.startsWith('/signup')) {
     if (user) {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
-  }
+      const { data: profile } = await supabase
+        .from('profiles')
+        .select('role')
+        .eq('id', user.id)
+        .single()
 
-  if (pathname === '/organizer/login') {
-    if (user) {
-      return NextResponse.redirect(new URL('/organizer', request.url))
+      const adminRoles = ['admin', 'super_admin', 'coordinator', 'volunteer']
+      if (profile && adminRoles.includes(profile.role)) {
+        return NextResponse.redirect(new URL('/organizer', request.url))
+      }
+      return NextResponse.redirect(new URL('/student', request.url))
     }
   }
 
@@ -50,13 +56,6 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
     '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }

@@ -32,7 +32,7 @@ export default async function EventDetailsPage({ params }: { params: { id: strin
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 pb-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      <Link href="/dashboard/events" className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm font-medium">
+      <Link href="/student/events" className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors text-sm font-medium">
         <ArrowLeft className="w-4 h-4" /> Back to Events
       </Link>
 
@@ -59,7 +59,7 @@ export default async function EventDetailsPage({ params }: { params: { id: strin
             <div className="shrink-0 w-full md:w-auto flex flex-col gap-3">
               {isRegistered ? (
                 <Link 
-                  href="/dashboard/my-events"
+                  href="/student/my-events"
                   className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl bg-emerald-500/10 text-emerald-400 font-bold border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors"
                 >
                   <CheckCircle2 className="w-5 h-5" /> You are Registered

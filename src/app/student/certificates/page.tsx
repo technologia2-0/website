@@ -12,7 +12,7 @@ export default function CertificatesPage() {
         Certificates will be distributed digitally here after the conclusion of the fest and verification of your attendance.
       </p>
       
-      <Link href="/dashboard" className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium transition-colors border border-white/10">
+      <Link href="/student" className="px-6 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium transition-colors border border-white/10">
         Return to Dashboard
       </Link>
     </div>

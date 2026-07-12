@@ -10,7 +10,7 @@ export default async function UserManagerPage() {
   // Verify that the current user is an admin or super_admin
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) {
-    redirect('/organizer/login')
+    redirect('/login')
   }
 
   const { data: profile } = await supabase

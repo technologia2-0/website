@@ -47,7 +47,7 @@ export function EventCard({
 
         <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5">
           <Link 
-            href={`/dashboard/events/${id}`}
+            href={`/student/events/${id}`}
             className="flex-1 text-center py-2 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium text-sm transition-colors border border-white/10"
           >
             View Details
@@ -55,14 +55,14 @@ export function EventCard({
           
           {isRegistered ? (
             <Link 
-              href={`/dashboard/my-events`}
+              href={`/student/my-events`}
               className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl bg-emerald-500/10 text-emerald-400 font-medium text-sm border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors"
             >
               <CheckCircle2 className="w-4 h-4" /> Registered
             </Link>
           ) : isOpen ? (
             <Link 
-              href={`/dashboard/events/${id}?action=register`}
+              href={`/student/events/${id}?action=register`}
               className="flex-1 text-center py-2 rounded-xl bg-white text-black hover:bg-gray-200 font-semibold text-sm transition-colors"
             >
               Register

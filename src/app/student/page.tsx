@@ -1,10 +1,10 @@
 import { createClient } from "@/utils/supabase/server"
-import { WelcomeHeader } from "@/components/dashboard/WelcomeHeader"
-import { CurrentActionCard } from "@/components/dashboard/CurrentActionCard"
-import { LiveAnnouncements } from "@/components/dashboard/LiveAnnouncements"
-import { TodaysSchedule } from "@/components/dashboard/TodaysSchedule"
-import { OverviewStats } from "@/components/dashboard/OverviewStats"
-import { QuickAccess } from "@/components/dashboard/QuickAccess"
+import { WelcomeHeader } from "@/components/student/WelcomeHeader"
+import { CurrentActionCard } from "@/components/student/CurrentActionCard"
+import { LiveAnnouncements } from "@/components/student/LiveAnnouncements"
+import { TodaysSchedule } from "@/components/student/TodaysSchedule"
+import { OverviewStats } from "@/components/student/OverviewStats"
+import { QuickAccess } from "@/components/student/QuickAccess"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 import { Calendar, MapPin, Users, ArrowRight, Ticket, ArrowUpRight } from "lucide-react"
@@ -81,7 +81,7 @@ export default async function DashboardOverview() {
               Browse available events and register to begin your Technologia journey. Don't miss out on the action!
             </p>
             <Link 
-              href="/dashboard/events" 
+              href="/student/events" 
               className="px-8 py-3 rounded-full bg-primary text-white font-bold hover:bg-blue-500 transition-colors shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:scale-105"
             >
               Browse Events
@@ -121,7 +121,7 @@ export default async function DashboardOverview() {
                     </button>
                   )}
                   <Link 
-                    href={`/dashboard/events/${event.id}`}
+                    href={`/student/events/${event.id}`}
                     className="flex-1 md:flex-none inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-black hover:bg-gray-200 font-semibold text-sm transition-colors"
                   >
                     Details <ArrowRight className="w-3.5 h-3.5" />
